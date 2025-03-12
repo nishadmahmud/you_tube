@@ -10,6 +10,12 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .active{
+            background: #FF1F3D;
+            color: white;
+        }
+    </style>
   </head>
   <body>
     <header class="w-11/12 m-auto">
@@ -22,10 +28,12 @@
     </header>
     <section class="w-11/12 m-auto ">
         <div id="catagory" class="flex justify-center gap-5 mt-7 mb-9">
-            <button class="btn btn-sm bg-[#25252533] hover:bg-[#FF1F3D]">All</button>
+            <button id="btn-all" onclick="loadVideos()" class="btn btn-sm bg-[#25252533] hover:bg-[#FF1F3D]">All</button>
         </div>
 
-        <div id="video-container" class="grid grid-cols-4 gap-5 mb-10"></div>
+        <div id="video-container" class="grid grid-cols-4 gap-5 mb-10">
+        
+        </div>
 
     </section>
 
