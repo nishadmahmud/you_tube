@@ -42,7 +42,7 @@ function loadVideos(input = "") {
 }
 
 function loadCataVid(id) {
-    showLoading();
+  showLoading();
   const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -53,33 +53,6 @@ function loadCataVid(id) {
       displayVideos(data.category);
     });
 }
-
-function videoDetails(video_id) {
-  console.log(video_id);
-  const url = `https://openapi.programming-hero.com/api/phero-tube/video/${video_id}`;
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      displayVideoDetails(data.video);
-    });
-}
-
-const displayVideoDetails = (video) => {
-  document.getElementById("video_details").showModal();
-  const details = document.getElementById("details");
-
-  details.innerHTML = `
-    <div class="card bg-base-100 image-full shadow-sm">
-        <figure>
-            <img src="${video.thumbnail}" />
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title font-bold">${video.title}</h2>
-            <p>${video.description}</p>
-        </div>
-    </div>
-    `;
-};
 
 function displayVideos(videos) {
   const videoContainer = document.getElementById("video-container");
@@ -145,8 +118,36 @@ function displayVideos(videos) {
   hideLoading();
 }
 
+function videoDetails(video_id) {
+  console.log(video_id);
+  const url = `https://openapi.programming-hero.com/api/phero-tube/video/${video_id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      displayVideoDetails(data.video);
+    });
+}
+
+const displayVideoDetails = (video) => {
+  document.getElementById("video_details").showModal();
+  const details = document.getElementById("details");
+
+  details.innerHTML = `
+      <div class="card bg-base-100 image-full shadow-sm">
+          <figure>
+              <img src="${video.thumbnail}" />
+          </figure>
+          <div class="card-body">
+              <h2 class="card-title font-bold">${video.title}</h2>
+              <p>${video.description}</p>
+          </div>
+      </div>
+      `;
+};
+
 document.getElementById("search").addEventListener("keyup", (event) => {
   const input = event.target.value;
+  console.log(input);
   loadVideos(input);
 });
 
