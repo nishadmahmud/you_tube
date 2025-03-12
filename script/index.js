@@ -26,8 +26,11 @@ function displayCata(catagories) {
   }
 }
 
-function loadVideos() {
-  fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+function loadVideos(input = "") {
+  showLoading();
+  fetch(
+    `https://openapi.programming-hero.com/api/phero-tube/videos?title=${input}`
+  )
     .then((res) => res.json())
     .then((data) => {
       removeActiveBtn();
@@ -39,6 +42,7 @@ function loadVideos() {
 }
 
 function loadCataVid(id) {
+    showLoading();
   const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -87,6 +91,7 @@ function displayVideos(videos) {
                 <h1 class="text-3xl font-bold">Oops!! Sorry, There is no content here</h1>
             </div>
     `;
+    hideLoading();
     return;
   }
 
@@ -137,6 +142,22 @@ function displayVideos(videos) {
 
     videoContainer.append(videoCard);
   });
+  hideLoading();
 }
 
+document.getElementById("search").addEventListener("keyup", (event) => {
+  const input = event.target.value;
+  loadVideos(input);
+});
+
+const showLoading = () => {
+  document.getElementById("loading").classList.remove("hidden");
+  document.getElementById("video-container").classList.add("hidden");
+};
+const hideLoading = () => {
+  document.getElementById("loading").classList.add("hidden");
+  document.getElementById("video-container").classList.remove("hidden");
+};
+
 loadCata();
+loadVideos();

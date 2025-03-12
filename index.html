@@ -21,8 +21,26 @@
     <header class="w-11/12 m-auto">
       <nav class="flex justify-between mt-11 mb-7">
         <img src="assests/Logo.png" class="w-32 h-auto" />
-        <button class="btn bg-[#25252533]">Sort by view</button>
-        <button class="btn bg-[#FF1F3D] text-white">Blogs</button>
+        <label class="input">
+          <svg
+            class="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input id="search" type="search" required placeholder="Search" />
+        </label>
+        <button class="btn bg-[#FF1F3D] text-white">Sort By View</button>
       </nav>
       <hr class="bg-[#17171720]" />
     </header>
@@ -40,11 +58,13 @@
       <div id="video-container" class="grid grid-cols-4 gap-5 mb-10"></div>
     </section>
 
+    <section id="loading" class="text-center p-20 hidden">
+        <span class="loading loading-spinner loading-xl"></span>
+    </section>
+
     <dialog id="video_details" class="modal">
       <div class="modal-box">
-        <div id="details">
-            
-        </div>
+        <div id="details"></div>
         <div class="modal-action">
           <form method="dialog">
             <button class="btn">Close</button>
